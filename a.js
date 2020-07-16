@@ -1,15 +1,30 @@
 const apiKey = ''; // my api key
-const contractAddress = ''; // etherscan contract adress
-const address = ''; // etherscan token address
+const contractAddress = '0xEd91879919B71bB6905f23af0A68d231EcF87b14'; // etherscan contract adress dmg
+const address = '0x8175362afBeeE32AfB22d05adc0bbD08dE32F5Ae'; // etherscan token address dmg
 // `String text ${expression}`   to use variable in link
 let link = `https://api.etherscan.io/api?module=account&action=tokentx&contractaddress=${contractAddress}&address=${address}&page=1&offset=7&sort=desc&apikey=${apiKey}`;
 document.getElementById('link').setAttribute('href', link); // idk for test lol
 let liqAddress = '';
-let sellAddress = '';
+let sellAddress = '0x8175362afbeee32afb22d05adc0bbd08de32f5ae';
+let array34 = new Array();
 
+function formatNumber(num) {
+  var first = num.split(',');
+  var digits = first[0].split('').reverse();
+  var new_digits = [];
+  for (var i = 0; i < digits.length; i++) {
+    if ((i + 1) % 18 == 0) {
+      new_digits.push(digits[i]);
+      new_digits.push('.');
+    } else {
+      new_digits.push(digits[i]);
+    }
+  }
+  var new_num = new_digits.reverse().join('');
+  return new_num;
+}
 function checkValue(value, hash, to) {
-  console.log(value);
-
+  console.log(formatNumber(value));
   if (sellAddress == to) {
     console.log('sold');
   } else console.log('bought');
